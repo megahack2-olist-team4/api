@@ -8,8 +8,12 @@ class CreateQuestions < ActiveRecord::Migration[6.0]
       t.timestamps
     end
 
-    create_join_table :categories, :questions, column_options: { null: false, type: :uuid, foreign_key: true }
+    create_join_table :categories, :questions, {
+      column_options: { null: false, type: :uuid, foreign_key: true }
+    }
 
-    add_reference :questions, :related, type: :uuid, foreign_key: { to_table: 'questions' }
+    add_reference :questions, :related, {
+      type: :uuid, foreign_key: { to_table: 'questions' }
+    }
   end
 end

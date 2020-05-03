@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_03_145014) do
+ActiveRecord::Schema.define(version: 2020_05_03_165148) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -51,6 +51,18 @@ ActiveRecord::Schema.define(version: 2020_05_03_145014) do
     t.index ["related_id"], name: "index_questions_on_related_id"
   end
 
+  create_table "questions_sites", id: false, force: :cascade do |t|
+    t.uuid "site_id", null: false
+    t.uuid "question_id", null: false
+    t.text "answer_xpath"
+  end
+
+  create_table "sites", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.text "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -66,4 +78,6 @@ ActiveRecord::Schema.define(version: 2020_05_03_145014) do
   add_foreign_key "categories_questions", "categories"
   add_foreign_key "categories_questions", "questions"
   add_foreign_key "questions", "questions", column: "related_id"
+  add_foreign_key "questions_sites", "questions"
+  add_foreign_key "questions_sites", "sites"
 end
