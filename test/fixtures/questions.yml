@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  description: MyText
+  keywords: MyText
+  public: false
+  related_id: one
+  category_id: one
+
+two:
+  description: MyText
+  keywords: MyText
+  public: false
+  related_id: two
+  category_id: two

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_03_110437) do
+ActiveRecord::Schema.define(version: 2020_05_03_145014) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -36,6 +36,21 @@ ActiveRecord::Schema.define(version: 2020_05_03_110437) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "categories_questions", id: false, force: :cascade do |t|
+    t.uuid "category_id", null: false
+    t.uuid "question_id", null: false
+  end
+
+  create_table "questions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.text "description"
+    t.text "keywords"
+    t.boolean "public"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.uuid "related_id"
+    t.index ["related_id"], name: "index_questions_on_related_id"
+  end
+
   create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -48,4 +63,7 @@ ActiveRecord::Schema.define(version: 2020_05_03_110437) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "categories_questions", "categories"
+  add_foreign_key "categories_questions", "questions"
+  add_foreign_key "questions", "questions", column: "related_id"
 end
