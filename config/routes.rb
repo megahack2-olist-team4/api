@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  devise_for :admins
+  devise_for :admins, skip: [:passwords]
+  as :admin do
+    get 'password/new', to: redirect('/404'), as: :new_admin_password
+  end
+
   devise_for :users
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
