@@ -19,7 +19,7 @@ class Api::V1::SitesController < Api::BaseController
   # GET /sites/1
   # GET /sites/1.json
   def show
-    render({ json: Api::V1::SiteSerializer.new(@site, { include: %i[questions] }) })
+    render({ json: Api::V1::SiteSerializer.new(@site, { include: %i[questions_sites] }) })
   end
 
   private

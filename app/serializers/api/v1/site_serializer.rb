@@ -1,7 +1,7 @@
 class Api::V1::SiteSerializer
   include FastJsonapi::ObjectSerializer
 
-  has_many :questions, { serializer: Api::V1::QuestionSerializer }
+  has_many :questions_sites, { serializer: Api::V1::QuestionSerializer, record_type: 'question' }
 
   attributes :name, :description, :url
 

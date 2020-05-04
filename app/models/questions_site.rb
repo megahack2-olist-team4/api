@@ -5,4 +5,6 @@ class QuestionsSite < ApplicationRecord
 
   belongs_to :question
   belongs_to :site
+
+  delegate :description, :keywords, :public, to: :question
 end

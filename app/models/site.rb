@@ -1,5 +1,6 @@
 class Site < ApplicationRecord
   include SiteAdmin
 
-  has_and_belongs_to_many :questions
+  has_many :questions_sites
+  has_many :questions, through: :assignments
 end
