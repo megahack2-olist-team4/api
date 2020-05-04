@@ -1,0 +1,222 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  border: none;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  outline: none;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  color: #737373;
+}
+
+button {
+  font-family: 'Roboto', sans-serif;
+  height: 56px;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 56px;
+  letter-spacing: 0.02em;
+  color: #FFFFFF;
+  padding: 0 24px;
+  background: #30E3CA;
+  border-radius: 30px;
+  margin-top: 40px;
+}
+button span {
+  font-weight: normal;
+}
+
+img {
+  display: block;
+}
+
+h2 {
+  font-weight: bold;
+  font-size: 36px;
+  line-height: 43px;
+  letter-spacing: 0.02em;
+  color: #2A3237;
+}
+
+.header-container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+}
+
+.header-content {
+  width: 50%;
+  padding-top: 123px;
+}
+
+.header-content img {
+  margin-bottom: 40px;
+}
+
+.header-content h1 {
+  width: 624px;
+  font-weight: bold;
+  font-size: 48px;
+  line-height: 58px;
+  letter-spacing: 0.02em;
+  color: #2A3237;
+}
+
+.header-content p {
+  width: 515px;
+  font-size: 22px;
+  line-height: 32px;
+  letter-spacing: 0.02em;
+  color: #40514E;
+  margin-top: 16px;
+}
+
+.header-modal {
+  width: 50%;
+  position: relative;
+}
+
+.header-modal .modal {
+  margin-top: 149px;
+}
+
+.header-modal .bg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: -1;
+}
+
+.how-it-works {
+  text-align: center;
+  padding: 160px 0;
+  border-top: 1px solid #DDDDDD;
+  border-bottom: 1px solid #DDDDDD;
+  margin-top: 120px;
+}
+
+.how-it-works > p {
+  font-size: 18px;
+  line-height: 32px;
+  letter-spacing: 0.02em;
+  color: #40514E;
+  margin-bottom: 72px;
+}
+
+.how-it-works .itens {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1058px;
+  margin: 0 auto;
+}
+
+.how-it-works .item {
+  width: 328px;
+  text-align: center;
+}
+
+.how-it-works .item .icon {
+  width: 64px;
+  height: 64px;
+  background: #30E3CA;
+  text-align: center;
+  color: #FFFFFF;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 64px;
+  border-radius: 50%;
+  margin: 0 auto;
+}
+
+.how-it-works .item h3 {
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 29px;
+  text-align: center;
+  color: #2A3237;
+  margin: 24px 0;
+}
+
+.how-it-works .item p {
+font-size: 18px;
+line-height: 27px;
+text-align: center;
+letter-spacing: 0.02em;
+color: #40514E;
+}
+
+.marketplaces {
+  text-align: center;
+  background: #1D2022;
+  padding-top: 160px;
+  position: relative;
+  padding-bottom: 114px;
+}
+.marketplaces h2 {
+  color: #FFFFFF;
+}
+.marketplaces p {
+  max-width: 842px;
+  font-size: 22px;
+  line-height: 32px;
+  text-align: center;
+  letter-spacing: 0.02em;
+  color: #F2F2F2;
+  margin-top: 8px;
+  margin-bottom: 56px;
+  display: inline-block;
+}
+
+.marketplaces .logos {
+  max-width: 1062px;
+  height: 231px;
+  margin: 0 auto;
+  background: #FFFFFF;
+  box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.24);
+  border-radius: 16px;
+  padding: 40px;
+  position: absolute;
+  transform: translate(-50%, 0);
+  width: 100%;
+  left: 50%;
+}
+
+.marketplaces .logos div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 16px;
+}
+
+.simple {
+  text-align: center;
+  padding: 300px 0 200px 0;
+}
+.simple p {
+  max-width: 842px;
+  font-size: 22px;
+  line-height: 32px;
+  text-align: center;
+  letter-spacing: 0.02em;
+  margin-top: 8px;
+  margin-bottom: 56px;
+  margin: 0 auto;
+}
+
+.footer {
+  font-size: 18px;
+  line-height: 96px;
+  text-align: center;
+  letter-spacing: 0.02em;
+  color: #40514E;
+  text-align: center;
+  border-top: 1px solid #DDDDDD;
+}

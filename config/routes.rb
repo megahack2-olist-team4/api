@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root 'home#index'
+
   devise_for :admins, skip: [:passwords]
   as :admin do
     get 'password/new', to: redirect('/404'), as: :new_admin_password
