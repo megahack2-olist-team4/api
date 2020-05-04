@@ -8,10 +8,13 @@ class CreateSites < ActiveRecord::Migration[6.0]
       t.timestamps
     end
 
-    create_join_table :sites, :questions, {
-      column_options: { null: false, type: :uuid, foreign_key: true }
-    } do |t|
+    create_table :questions_sites, id: :uuid, default: 'gen_random_uuid()' do |t|
       t.text :answer_xpath
+
+      t.timestamps
     end
+
+    add_reference :questions_sites, :question, type: :uuid, foreign_key: true
+    add_reference :questions_sites, :site, type: :uuid, foreign_key: true
   end
 end

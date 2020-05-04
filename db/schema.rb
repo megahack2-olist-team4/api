@@ -30,10 +30,12 @@ ActiveRecord::Schema.define(version: 2020_05_03_170144) do
 
   create_table "categories", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name", null: false
+    t.string "slug", null: false
     t.text "description"
     t.text "keywords"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["slug"], name: "index_categories_on_slug"
   end
 
   create_table "categories_questions", id: false, force: :cascade do |t|
@@ -59,10 +61,14 @@ ActiveRecord::Schema.define(version: 2020_05_03_170144) do
     t.index ["related_id"], name: "index_questions_on_related_id"
   end
 
-  create_table "questions_sites", id: false, force: :cascade do |t|
-    t.uuid "site_id", null: false
-    t.uuid "question_id", null: false
+  create_table "questions_sites", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.text "answer_xpath"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.uuid "question_id"
+    t.uuid "site_id"
+    t.index ["question_id"], name: "index_questions_sites_on_question_id"
+    t.index ["site_id"], name: "index_questions_sites_on_site_id"
   end
 
   create_table "sites", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
