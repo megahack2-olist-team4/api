@@ -8,7 +8,9 @@ Rails.application.routes.draw do
 
   namespace :api, { defaults: { format: 'json' } } do
     namespace :v1 do
-      resources :sites, { only: %i[index show] }
+      resources :sites, { only: %i[index show] } do
+        patch '/', { action: 'load', on: :member }
+      end
     end
   end
 

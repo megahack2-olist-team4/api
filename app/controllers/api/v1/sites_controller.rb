@@ -1,5 +1,5 @@
 class Api::V1::SitesController < Api::BaseController
-  before_action :set_site, only: [:show, :update, :destroy]
+  before_action :set_site, only: [:show, :load]
 
   # GET /sites
   # GET /sites.json
@@ -19,6 +19,12 @@ class Api::V1::SitesController < Api::BaseController
   # GET /sites/1
   # GET /sites/1.json
   def show
+    render({ json: Api::V1::SiteSerializer.new(@site, { include: %i[questions_sites] }) })
+  end
+
+  # PATCH /sites/1
+  # PATCH /sites/1.json
+  def load
     render({ json: Api::V1::SiteSerializer.new(@site, { include: %i[questions_sites] }) })
   end
 
