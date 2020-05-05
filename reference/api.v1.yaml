@@ -1,0 +1,172 @@
+openapi: 3.0.0
+info:
+  title: onShop API
+  version: '1.0'
+  description: |-
+    Projeto desenvolido para solucionar o desafio da https://olist.com/ no https://www.megahack.com.br/ 2ª edição.
+
+    Acesse https://megahack2-olist-team4.herokuapp.com/api/v1.
+
+    Essa api fornece dados para extensão Chrome do repositório https://github.com/megahack2-olist-team4/chrome-extension.
+  contact:
+    name: Magahack 2 Desafio Olist Equipe 4
+    url: 'https://github.com/megahack2-olist-team4'
+    email: raphox.araujo@gmail.com
+servers:
+  - url: 'https://megahack2-olist-team4.herokuapp.com/api/v1'
+    description: Production
+paths:
+  /sites:
+    get:
+      summary: Get sites list
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Site'
+      operationId: get-sites
+      description: |-
+        Você tera acesso a lista de sites (marketplaces) que a extenção consegue coletar informações dos produtos exibidos.
+
+        Através dessa lista, a extensão do navegador será capaz de saber se a url acessada possui uma extrutura mapeada que fornecerá dados úteis ao usuário.
+  '/sites/{id}':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    get:
+      summary: Get site data and questions
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Site'
+      operationId: get-sites-id
+      description: 'Após a extenção identificar o site que o cliente está acessando, a API oferece através desse endpoint, a listar de perguntas frenquentes do produto atual.'
+    patch:
+      summary: Load product related data and questions
+      operationId: patch-sites-id
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Site'
+              examples:
+                example-1: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                url:
+                  type: string
+                  format: uri
+                title:
+                  type: string
+                description:
+                  type: string
+                image:
+                  type: string
+                  format: uri
+            examples:
+              example-1:
+                value:
+                  url: 'https://www.mercadolivre.com.br/samsung-galaxy-j2-core-dual-sim-16-gb-preto-1-gb-ram/p/MLB15030554'
+                  title: 'Samsung Galaxy J2 Core Dual SIM 16 GB Preto 1 GB RAM - R$ 629,00'
+                  description: 'Desbloqueado. | Tela PLS TFT de 5&quot;. | Câmera traseira de 8Mpx. | Câmera frontal de 5Mpx. | Processador Exynos 7570 Quad-Core de 1.4GHz com 1GB de RAM. | Bateria de 2600mAh. | Memória interna 16GB. Adequado para cartão SD de 256GB. | Sistema operacional Android 8.1 Oreo.'
+                  image: 'https://http2.mlstatic.com/D_NQ_NP_911899-MLA32445402855_102019-O.webp'
+        description: ''
+      description: |-
+        Após a extenção identificar o site que o cliente está acessando, a API oferece através desse endpoint, a listar de perguntas frenquentes do produto atual.
+
+        Diferente do `GET`, o `PATCH` terá a capacidade de receber os dados do produto fornecidas pela página e buscará informações mas especializadas em APIs de parceiros.
+components:
+  schemas:
+    Site:
+      title: Site
+      type: object
+      x-examples:
+        example-1:
+          id: 8a12b3df-3c33-4ea0-b28a-f21e6f272aaa
+          type: site
+          attributes:
+            name: Americanas
+            description: null
+            url: 'https://www.americanas.com.br'
+          relationships: {}
+          links:
+            self: /api/v1/sites/8a12b3df-3c33-4ea0-b28a-f21e6f272aaa
+      description: ''
+      properties:
+        id:
+          type: string
+          format: uuid
+          minLength: 3
+        links:
+          type: object
+          properties:
+            self:
+              type: string
+              format: uri
+              example: /api/v1/sites/818e87db-5a07-4a21-85cc-585973a1b599
+        type:
+          type: string
+          example: site
+        attributes:
+          type: object
+          properties:
+            url:
+              type: string
+              example: 'https://www.americanas.com.br'
+            description:
+              type: string
+              example: Tudo. A toda hora. Em qualquer lugar
+            name:
+              type: string
+              example: Americanas
+        relationships:
+          type: object
+          properties:
+            questions:
+              type: array
+              items:
+                $ref: '#/components/schemas/Question'
+    Question:
+      title: Question
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: 2cc3a9f0-0281-4f27-80dd-e768572af221
+        question:
+          type: string
+        attributes:
+          type: object
+          properties:
+            description:
+              type: string
+            keywords:
+              type: array
+              items:
+                type: string
+            public:
+              type: boolean
+            answer_xpath:
+              type: string
